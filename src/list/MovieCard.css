@@ -1,0 +1,56 @@
+/* MovieCard.css */
+
+.movie-card {
+  height: 370px;
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.movie-image {
+  height: 270px;
+  width: 180px;
+}
+
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24%;
+  margin-top: 10px;
+}
+
+.title-and-rating {
+  display: flex;
+  align-items: flex-start;
+}
+
+.title {
+  flex: 0.8;
+}
+
+.title-text {
+  overflow: hidden;
+  max-height: 3em;
+}
+
+.rating {
+  flex: 0.2;
+  display: flex;
+  align-items: center;
+}
+
+.overview {
+  margin-top: 10px;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
