@@ -3,8 +3,8 @@ import {Link, useParams} from 'react-router-dom'
 import {IMAGE_BASE_TEMP} from '../app/envVariables'
 import {getDirectorsFromCastAndCrew} from './methods/getDirectorsFromCastAndCrew'
 import {getListOfActors} from './methods/getListOfActors'
-import {mockCredits} from './mockCredits'
 import './MovieDetails.css'
+import {useMovieCredits} from './useMovieCredits'
 
 import {useMovieDetails} from './useMovieDetails'
 
@@ -17,10 +17,12 @@ export const MovieDetails = () => {
 
   const {data: details, isLoading, isError} = useMovieDetails(id)
 
+  const {data: credits} = useMovieCredits(id)
+
   const releaseYear =
     details && details.release_date ? details.release_date.split('-')[0] : ''
 
-  const actors = getListOfActors(mockCredits)
+  const actors = credits ? getListOfActors(credits) : []
 
   return (
     <div className="movie-details-container">
@@ -56,13 +58,13 @@ export const MovieDetails = () => {
               <span> | </span>
               <span>{details.runtime} mins</span>
               <span> | </span>
-              <span>{getDirectorsFromCastAndCrew(mockCredits)}</span>
+              <span>{credits ? getDirectorsFromCastAndCrew(credits) : ''}</span>
             </div>
             <div className="cast">
               <span>Cast : </span>
-              <span>{actors[0].name}</span>
+              <span>{actors[0]?.name || ''}</span>
               <span>, </span>
-              <span>{actors[1].name}</span>
+              <span>{actors[1]?.name || ''}</span>
               <span>, </span>
               <span>...</span>
             </div>
