@@ -14,3 +14,10 @@ export interface MovieListItem {
   vote_average: number
   vote_count: number
 }
+
+export interface MoviesList {
+  page: number
+  total_pages: number
+  total_results: number
+  results: MovieListItem[]
+}

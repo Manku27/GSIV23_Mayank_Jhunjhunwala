@@ -4,3 +4,12 @@
   justify-content: space-evenly;
   margin: 20px;
 }
+
+.centerBoth {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffc107;
+}
