@@ -1,5 +1,3 @@
-/* MovieCard.css */
-
 .movie-card {
   height: 370px;
   width: 200px;
@@ -39,6 +37,7 @@
 .title-text {
   overflow: hidden;
   max-height: 3em;
+  color: #424242;
 }
 
 .rating {
