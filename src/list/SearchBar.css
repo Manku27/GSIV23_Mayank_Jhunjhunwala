@@ -9,8 +9,9 @@
 
 .search-input {
   width: 40vw;
-  height: 30px;
+  height: 40px;
   font-size: 24px;
+  padding: 10px;
 }
 
 .search-icon {

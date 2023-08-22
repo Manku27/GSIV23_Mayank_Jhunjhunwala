@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {MovieCard} from './MovieCard'
 import {SearchBar} from './SearchBar'
 import './MoviesList.css'
@@ -7,6 +7,7 @@ import {MovieListItem} from './models'
 import {ERROR_MESSAGE} from '../app/envVariables'
 import {useDebounce} from '../app/useDebounce'
 import {useSearchMovies} from './useSearchMovies'
+import {useInView} from 'react-intersection-observer'
 
 export const MoviesList = () => {
   const [searchKeyWord, setSearchKeyWord] = useState('')
@@ -17,12 +18,30 @@ export const MoviesList = () => {
 
   const debouncedSearchText = useDebounce(searchKeyWord, 1000)
 
-  const {data, isLoading, isError} = useMoviesList()
+  const {
+    data,
+    isLoading,
+    isError,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useMoviesList()
   const {
     data: searchData,
     isLoading: isSearching,
     isError: isSearchError,
+    fetchNextPage: fetchNextPageSearch,
+    isFetchingNextPage: isFetchingNextPageSearch,
+    hasNextPage: hasNextPageSearch,
   } = useSearchMovies(debouncedSearchText)
+
+  const {ref, inView} = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      searchKeyWord ? fetchNextPageSearch() : fetchNextPage()
+    }
+  }, [fetchNextPage, fetchNextPageSearch, inView, searchKeyWord])
 
   let renderItem = null
   if (isLoading) {
@@ -51,11 +70,33 @@ export const MoviesList = () => {
         details.push(detail)
       })
 
+      const hasNext = debouncedSearchText ? hasNextPageSearch : hasNextPage
+      const isFetchingNext = debouncedSearchText
+        ? isFetchingNextPageSearch
+        : isFetchingNextPage
+      const fetchNext = debouncedSearchText
+        ? fetchNextPageSearch
+        : fetchNextPage
+
       renderItem = (
         <>
           {details.map((item) => {
             return <MovieCard item={item} key={item.id} />
           })}
+          <div className="centerHorizontal">
+            <button
+              ref={ref}
+              onClick={() => fetchNext()}
+              disabled={!hasNext || isFetchingNext}
+              style={{color: '#ffc107'}}
+            >
+              {isFetchingNext
+                ? 'Loading more...'
+                : hasNext
+                ? 'Load Newer'
+                : 'That is all'}
+            </button>
+          </div>
         </>
       )
     })

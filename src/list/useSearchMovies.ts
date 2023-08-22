@@ -16,10 +16,11 @@ export const useSearchMovies = (searchKeyword: string) => {
       })
       return res.data
     },
-    // {
-    //   getPreviousPageParam: (firstPage) => firstPage.previousId ?? undefined,
-    //   getNextPageParam: (lastPage) => lastPage.nextId ?? undefined,
-    // },
-    {enabled: !!searchKeyword}
+    {
+      enabled: !!searchKeyword,
+      getPreviousPageParam: (firstPage) => firstPage.page - 1 ?? undefined,
+      getNextPageParam: (lastPage) =>
+        lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
+    }
   )
 }
