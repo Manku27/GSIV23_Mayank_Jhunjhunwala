@@ -1,28 +1,11 @@
 # React + TypeScript + Vite
+   
+   to Run : `yarn dev` 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-For interview.
+# Notes 
 
-Currently, two official plugins are available:
+   I chose to use `react-query` to manage data fetching as it provides out of the box caching which impacts the performance a lot.
+   I have tried to make the app fast and performant.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+   I would have introduced code splitting if the js bundles would have been heavier , it seemed over optimization at this point.
+   I would have spent a little more time on the design and UI part, as I have not spent much time on it and it can be better.
