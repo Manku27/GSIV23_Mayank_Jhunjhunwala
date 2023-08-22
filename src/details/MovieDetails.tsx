@@ -1,6 +1,6 @@
 import {AiFillHome, AiTwotoneStar} from 'react-icons/ai'
 import {Link, useParams} from 'react-router-dom'
-import {IMAGE_BASE_TEMP} from '../app/envVariables'
+import {ERROR_MESSAGE, IMAGE_BASE_TEMP} from '../app/envVariables'
 import {getDirectorsFromCastAndCrew} from './methods/getDirectorsFromCastAndCrew'
 import {getListOfActors} from './methods/getListOfActors'
 import './MovieDetails.css'
@@ -35,9 +35,7 @@ export const MovieDetails = () => {
       {isLoading ? (
         <div className="centerBoth">Loading</div>
       ) : isError ? (
-        <div className="centerBoth">
-          Sorry! Could not load movie at the moment
-        </div>
+        <div className="centerBoth">{ERROR_MESSAGE}</div>
       ) : details ? (
         <div className="movie-content">
           <img
