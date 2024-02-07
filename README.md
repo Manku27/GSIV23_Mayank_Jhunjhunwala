@@ -2,6 +2,10 @@
    
    to Run : `yarn dev` 
 
+# Objective
+
+   Part of an interview project, no real learnings.
+
 # Notes 
 
    I chose to use `react-query` to manage data fetching as it provides out of the box caching which impacts the performance a lot.
